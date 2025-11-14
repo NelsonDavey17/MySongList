@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
   CONSTRAINT `fl_fk_user_dua` FOREIGN KEY (`user_dua_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-TRUNCATE TABLE `genre`;
 INSERT INTO `genre` (`nama_genre`) VALUES
 ('Pop'),
 ('Rock'),

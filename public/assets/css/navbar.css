@@ -1,0 +1,82 @@
+*, html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: white;
+}
+.navbar {
+    background-color: #0443f1;
+    display: flex;
+    justify-content: space-between;
+    padding : 1rem 2rem;
+}
+.navbar div img {
+    width: 150px;
+}
+.navbar div img:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all;
+    transition-duration: 500ms;
+}
+.navbar ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 4rem;
+
+}
+.navbar ul li a {
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    font-weight: 600;
+    padding: 8px;
+    transition: all;
+    transition-duration: 600ms;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+.navbar ul li a:hover {
+    color: black;
+    border-bottom: 1px solid black;
+    font-weight: 650;
+    font-size: 100%;
+}
+.menu-icon {
+    /*background-color: tomato;*/
+    font-size: 28px;
+    display: none;
+    align-items: center;
+}
+main{
+    padding-top: 2rem;
+}
+@media only screen and (max-width: 768px) {
+    .navbar{
+        flex-wrap: wrap;
+        position: fixed;
+        width: 100%;
+    }
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbar ul li:last-of-type {
+        padding-bottom: 8px;
+    }
+    .navbar .hidden{
+        display: none;
+    }
+    .menu-icon{
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+    }
+    main{
+        padding-top: 5rem;
+    }
+}

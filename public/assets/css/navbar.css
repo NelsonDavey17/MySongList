@@ -25,7 +25,7 @@ body {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
 
 }
 .navbar ul li a {
@@ -34,8 +34,8 @@ body {
     color: white;
     font-weight: 600;
     padding: 8px;
-    transition: all;
-    transition-duration: 600ms;
+    transition: none;
+    transition-duration: 300ms;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
 .navbar ul li a:hover {
@@ -51,7 +51,7 @@ body {
     align-items: center;
 }
 main{
-    padding-top: 2rem;
+    padding-top: 0rem;
 }
 @media only screen and (max-width: 768px) {
     .navbar{
@@ -64,8 +64,14 @@ main{
         flex-direction: column;
         width: 100%;
     }
+    .navbar ul li a{
+        border-bottom: 1px solid black;
+    }
     .navbar ul li:last-of-type {
         padding-bottom: 8px;
+    }
+    .navbar ul li a:hover{
+        border-bottom: 3px solid black;
     }
     .navbar .hidden{
         display: none;
@@ -77,6 +83,6 @@ main{
 
     }
     main{
-        padding-top: 5rem;
+        padding-top: 2rem;
     }
 }

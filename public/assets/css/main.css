@@ -1,0 +1,186 @@
+:root {
+    --primary-color: #005A9C;
+    --secondary-color: #004080;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #fff;
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.container{
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0px 20px;
+    justify-content: center
+}
+h1{
+    color : #333;
+    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 10px;
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+.song-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+.song-card{
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.song-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+.song-title{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #005A9C; /* Warna utama (biru) */
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.song-artist{
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+.song-year{
+    font-size: 0.9rem;
+    color: #888;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #f4f8fa;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.no-songs{
+    color: #777;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.fab-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 100; /* Di atas konten */
+}
+.fab-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.modal-overlay {
+    display: none; /* Sembunyi default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000; /* Di atas FAB */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-container {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    max-height: 90vh; /* Agar tidak melebihi tinggi layar */
+    overflow-y: auto; /* Scroll jika konten panjang */
+}
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h2 { margin: 0; font-size: 1.5rem; color: var(--primary-color); }
+.close-modal-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #888; }
+.close-modal-btn:hover { color: #333; }
+
+.modal-body { padding: 20px; }
+
+/* Form Styles dalam Modal */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+.required { color: red; }
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form-group small { color: #888; font-size: 0.85rem; }
+
+.genre-checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom checkbox */
+    gap: 10px;
+    max-height: 150px;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.checkbox-label { display: flex; align-items: center; font-weight: normal !important; cursor: pointer; }
+.checkbox-label input { margin-right: 8px; }
+
+.btn-primary {
+    margin-top: 30px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-primary.block {
+    width: 100%;
+    background-color: #0443f1;
+}
+.btn-primary:hover { background-color: var(--secondary-color); }

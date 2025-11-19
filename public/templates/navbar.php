@@ -26,6 +26,7 @@
         </div>
         <ul id="menu-list" class="hidden">
             <li><a href="index.php">Home</a></li>
+            <li><a href="#">Favorit</a></li>
             <li><a href="#">Top Song</a></li>
             <li><a href="#">Top Artist</a></li>
             <li><a href="#">Friends</a></li>

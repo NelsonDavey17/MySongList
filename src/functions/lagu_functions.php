@@ -27,4 +27,30 @@ function getGenres(mysqli $conn): array {
     }
     return $genres;
 }
+function getLaguById(mysqli $conn, int $laguId): ?array {
+    $sql = "SELECT l.lagu_id, l.judul, l.tahun, l.artist_id, a.nama_artist 
+            FROM lagu l 
+            JOIN artist a ON l.artist_id = a.artist_id 
+            WHERE l.lagu_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $laguId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $lagu = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+    if ($lagu) {
+        $sql_genres = "SELECT genre_id FROM lagu_genre WHERE lagu_id = ?";
+        $stmt_genres = mysqli_prepare($conn, $sql_genres);
+        mysqli_stmt_bind_param($stmt_genres, "i", $laguId);
+        mysqli_stmt_execute($stmt_genres);
+        $result_genres = mysqli_stmt_get_result($stmt_genres);
+        $genre_ids = [];
+        while ($row = mysqli_fetch_assoc($result_genres)) {
+            $genre_ids[] = $row['genre_id'];
+        }
+        $lagu['genre_ids'] = $genre_ids;
+        mysqli_stmt_close($stmt_genres);
+    }
+    return $lagu;
+}
 ?>

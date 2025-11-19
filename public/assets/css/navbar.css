@@ -1,16 +1,13 @@
-*, html {
+*,html {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-body {
-    background-color: white;
 }
 .navbar {
     background-color: #0443f1;
     display: flex;
     justify-content: space-between;
-    padding : 1rem 2rem;
+    padding : 2rem 2rem;
 }
 .navbar div img {
     width: 150px;
@@ -25,7 +22,7 @@ body {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 
 }
 .navbar ul li a {
@@ -58,6 +55,7 @@ main{
         flex-wrap: wrap;
         position: fixed;
         width: 100%;
+        z-index: 1;
     }
     .navbar ul {
         display: flex;
@@ -83,6 +81,6 @@ main{
 
     }
     main{
-        padding-top: 2rem;
+        padding-top: 3rem;
     }
 }

@@ -53,4 +53,51 @@ function getLaguById(mysqli $conn, int $laguId): ?array {
     }
     return $lagu;
 }
+function getLaguAdvanced(mysqli $conn, string $keyword, string $genreId, string $sort): array {
+    //ini yang sekarang dipake buat nampilin lagu di halaman utama dengan filter dan sorting
+    $daftarLagu = [];
+    $sql = "SELECT DISTINCT l.lagu_id, l.judul, l.tahun, a.nama_artist 
+            FROM lagu l
+            JOIN artist a ON l.artist_id = a.artist_id";
+    if (!empty($genreId)) {
+        $sql .= " JOIN lagu_genre lg ON l.lagu_id = lg.lagu_id";
+    }
+    $conditions = [];
+    $params = [];
+    $types = "";
+    if (!empty($keyword)) {
+        $conditions[] = "(l.judul LIKE ? OR a.nama_artist LIKE ?)";
+        $searchTerm = "%" . $keyword . "%";
+        $params[] = $searchTerm;
+        $params[] = $searchTerm; 
+        $types .= "ss";
+    }
+    if (!empty($genreId)) {
+        $conditions[] = "lg.genre_id = ?";
+        $params[] = (int)$genreId;
+        $types .= "i";
+    }
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
+    }
+    switch ($sort) {
+        case 'judul_desc': $orderBy = "l.judul DESC"; break;
+        case 'tahun_asc': $orderBy = "l.tahun ASC"; break;
+        case 'tahun_desc': $orderBy = "l.tahun DESC"; break;
+        default: $orderBy = "l.judul ASC"; break;
+    }
+    $sql .= " ORDER BY " . $orderBy;
+    $stmt = mysqli_prepare($conn, $sql);
+    if (!empty($params)) {
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $daftarLagu = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+    }
+    mysqli_stmt_close($stmt);
+    return $daftarLagu;
+}
 ?>

@@ -1,4 +1,5 @@
 <?php
+//navigation bar
 include 'templates/navbar.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -7,12 +8,18 @@ if (!isset($_SESSION['user_id'])) {
 }
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__. '/../src/functions/lagu_functions.php';
+//buat nampilin lagu dengan filter dan sorting
+$keyword = $_GET['keyword'] ?? '';
+$filterGenre = $_GET['genre'] ?? '';
+$sortBy = $_GET['sort'] ?? 'judul_asc';
+
 $currentUserId = $_SESSION['user_id'];
 $daftarGenre = [];
 if(function_exists('getGenres')){
   $daftarGenre = getGenres($conn);
 }
-$daftarlagutampil = getAllLagu($conn);
+//song card ditampilkan dengan fungsi getLaguAdvanced
+$daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//getAllLagu($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +46,45 @@ $daftarlagutampil = getAllLagu($conn);
       <div class="container">
         <h1>Katalog Lagu</h1>
         <p>Jelajahi semua lagu yang ada di MySongList.</p>
+
+        <div class="filter-bar-container">
+          <form action="index.php" method="GET" class="main-filter-form">
+            <div class="search-row">
+              <div class="search-group">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <input type="text" name="keyword" placeholder="Cari Judul atau Artis..." value="<?php echo htmlspecialchars($keyword); ?>">
+                <button type="submit" class="btn-search-submit"><i class="ph ph-arrow-right"></i></button>
+              </div>
+            </div>
+
+            <div class="filter-row">
+              <span class="filter-label">Filter & Urutkan:</span>
+              <div class="filter-group">
+                  <select name="genre" onchange="this.form.submit()">
+                    <option value="">Semua Genre</option>
+                    <?php foreach ($daftarGenre as $genre): ?>
+                      <option value="<?php echo $genre['genre_id']; ?>" <?php echo ($filterGenre == $genre['genre_id']) ? 'selected' : ''; ?>>
+                      <?php echo htmlspecialchars($genre['nama_genre']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                  </select>
+              </div>
+
+              <div class="filter-group">
+                <select name="sort" onchange="this.form.submit()">
+                  <option value="judul_asc" <?php echo ($sortBy == 'judul_asc') ? 'selected' : ''; ?>>Judul (A-Z)</option>
+                  <option value="judul_desc" <?php echo ($sortBy == 'judul_desc') ? 'selected' : ''; ?>>Judul (Z-A)</option>
+                  <option value="tahun_desc" <?php echo ($sortBy == 'tahun_desc') ? 'selected' : ''; ?>>Tahun (Terbaru)</option>
+                  <option value="tahun_asc" <?php echo ($sortBy == 'tahun_asc') ? 'selected' : ''; ?>>Tahun (Terlama)</option>
+                </select>
+              </div>
+
+              <?php if (!empty($keyword) || !empty($filterGenre) || $sortBy != 'judul_asc'): ?>
+                <a href="index.php" class="btn-reset" title="Reset Semua Filter"><i class="ph ph-arrow-counter-clockwise"></i></a>
+              <?php endif; ?>
+            </div>
+          </form>
+        </div>
 
         <?php if (isset($_GET['success'])): ?>
             <div class="alert success"><?php echo htmlspecialchars(urldecode($_GET['success'])); ?></div>

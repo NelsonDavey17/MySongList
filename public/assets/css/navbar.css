@@ -50,6 +50,21 @@
 main{
     padding-top: 0rem;
 }
+.nav-logout {
+    color: #e74c3c !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+.nav-logout:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 5px;
+}
+.nav-logout i {
+    font-size: 1.1rem;
+}
 @media only screen and (max-width: 768px) {
     .navbar{
         flex-wrap: wrap;
@@ -79,6 +94,10 @@ main{
         align-items: center;
         font-weight: 700;
 
+    }
+    .nav-logout{
+        padding-top: 10px;
+        justify-content: center;
     }
     main{
         padding-top: 3rem;

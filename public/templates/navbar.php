@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +32,12 @@
             <li><a href="favorit.php">Favorit</a></li>
             <li><a href="toplagu.php">Top Song</a></li>
             <li><a href="topartist.php">Top Artist</a></li>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li>
+                <a href="../src/auth/logout.php" class="nav-logout" onclick="return confirm('Apakah Anda yakin ingin keluar?');">
+                <i class="ph ph-sign-out"></i> Logout
+            </a>
+            </li>
         </ul>
     </nav>
     <main>

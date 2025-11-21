@@ -141,4 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error:', error));
         }
     });
+    //logika buka modal ganti password
+    const passModal = document.getElementById('changePasswordModal');
+    const openPassBtn = document.getElementById('openChangePassBtn');
+    if (passModal && openPassBtn) {
+        openPassBtn.addEventListener('click', function() {
+            const form = passModal.querySelector('form');
+            if(form) form.reset();
+            closeAllModals();
+            passModal.style.display = '';
+            passModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
 });

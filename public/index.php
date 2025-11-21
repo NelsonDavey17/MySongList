@@ -27,7 +27,7 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home - MySongList</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -185,8 +185,6 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
             </div>
         </div>
     </div>
-
-
 
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/main.js"></script>

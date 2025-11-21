@@ -28,7 +28,7 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="favorit.php">Favorit</a></li>
             <li><a href="toplagu.php">Top Song</a></li>
-            <li><a href="#">Top Artist</a></li>
+            <li><a href="topartist.php">Top Artist</a></li>
             <li><a href="#">Friends</a></li>
             <li><a href="#">Profile</a></li>
         </ul>

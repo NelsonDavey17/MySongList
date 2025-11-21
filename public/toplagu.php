@@ -37,7 +37,7 @@ if(function_exists('getGenres')){
     <main>
       <div class="container">
         <div class="page-header">
-            <h1><i class="ph-fill ph-trophy" style="color: #f1c40f;"></i> Top 15 Lagu Terpopuler</h1>
+            <h1><i class="ph-fill ph-trophy"></i> Top 15 Lagu Terpopuler</h1>
             <p>Lagu-lagu yang paling banyak difavoritkan oleh komunitas.</p>
         </div>
 

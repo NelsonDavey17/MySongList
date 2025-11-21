@@ -232,6 +232,36 @@ p{
     display: inline-block;
     width: fit-content;
 }
+.rank-badge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+.rank-1 { background: linear-gradient(135deg, #FFD700, #FDB931); font-size: 1.4rem;} /* Emas */
+.rank-2 { background: linear-gradient(135deg, #E0E0E0, #BDBDBD); } /* Perak */
+.rank-3 { background: linear-gradient(135deg, #CD7F32, #A0522D); } /* Perunggu */
+
+.fav-count {
+    font-size: 0.85rem;
+    color: #e74c3c;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
 .song-action{
     display: flex;
     flex-direction: column;
@@ -336,7 +366,7 @@ p{
     justify-content: center;
     margin-top: 15px;
     text-decoration: none;
-    
+
 }
 
 .fab-btn {

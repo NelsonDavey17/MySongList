@@ -1,0 +1,190 @@
+.profile-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    transition: transform 0.3s ease;
+}
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+.profile-header {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    border: 4px solid white;
+}
+.profile-info {
+    flex-grow: 1;
+}
+.profile-info h2 {
+    margin: 0 0 20px 0;
+    color: var(--primary-color);
+    font-size: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+.info-row {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.info-label {
+    width: 120px;
+    font-weight: bold;
+    color: #666;
+}
+.info-value {
+    color: var(--text-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-change-pass {
+    background-color: #f39c12;
+    /* Warna oranye */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s, transform 0.2s;
+    margin-left: 15px;
+}
+.btn-change-pass:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+}
+.stat-box {
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    display: block;
+    line-height: 1.2;
+}
+.stat-label {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.sub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+.sub-header h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .profile-info h2 {
+        text-align: center;
+    }
+    .info-row {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .info-label {
+        width: auto;
+        margin-bottom: 5px;
+    }
+    .profile-stats {
+        justify-content: center;
+    }
+}
+.btn-icon-small {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+.btn-icon-small:hover {
+    color: var(--primary-color);
+    background-color: #f0f4f8;
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.radio-label:hover {
+    background-color: #f9f9f9;
+    border-color: #ddd;
+}
+.radio-label input[type="radio"]:checked+.radio-text {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.radio-text {
+    font-size: 1rem;
+    color: #555;
+}

@@ -22,6 +22,7 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Saya - MySongList</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
@@ -50,7 +51,16 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
                     </div>
                     <div class="info-row">
                         <span class="info-label">Gender:</span>
-                        <span class="info-value"><?php echo !empty($userData['gender']) ? ucfirst($userData['gender']) : '-'; ?></span>
+                        <span class="info-value">
+                            <?php 
+                                if ($userData['gender'] === 'male') echo 'Laki-laki';
+                                elseif ($userData['gender'] === 'female') echo 'Perempuan';
+                                else echo '-';
+                            ?>
+                            <button id="openGenderModalBtn" class="btn-icon-small" title="Ubah Gender">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Password:</span>
@@ -133,6 +143,38 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
                         <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
                     </div>
                     <button type="submit" class="btn-primary block">Simpan Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="changeGenderModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Ubah Gender</h2>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="../src/actions/update_gender.php" method="POST">
+                    <div class="form-group">
+                        <label style="margin-bottom: 15px; display:block;">Pilih Gender:</label>
+                        
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" <?php echo ($userData['gender'] === 'male') ? 'checked' : ''; ?>>
+                            <span class="radio-text">Laki-laki (Male)</span>
+                        </label>
+                        
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female" <?php echo ($userData['gender'] === 'female') ? 'checked' : ''; ?>>
+                            <span class="radio-text">Perempuan (Female)</span>
+                        </label>
+                        
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="none" <?php echo ($userData['gender'] === null) ? 'checked' : ''; ?>>
+                            <span class="radio-text">Tidak ingin menyebutkan (None)</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary block">Simpan Perubahan</button>
                 </form>
             </div>
         </div>

@@ -154,4 +154,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'hidden';
         });
     }
+    //logika buka modal ganti gender
+    const genderModal = document.getElementById('changeGenderModal');
+    const openGenderBtn = document.getElementById('openGenderModalBtn');
+    if (genderModal && openGenderBtn) {
+        openGenderBtn.addEventListener('click', function() {
+            closeAllModals();
+            genderModal.style.display = '';
+            genderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
 });

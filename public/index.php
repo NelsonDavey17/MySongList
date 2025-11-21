@@ -8,12 +8,14 @@ if (!isset($_SESSION['user_id'])) {
 }
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__. '/../src/functions/lagu_functions.php';
+require_once __DIR__. '/../src/functions/user_song_functions.php';
 //buat nampilin lagu dengan filter dan sorting
 $keyword = $_GET['keyword'] ?? '';
 $filterGenre = $_GET['genre'] ?? '';
 $sortBy = $_GET['sort'] ?? 'judul_asc';
 
 $currentUserId = $_SESSION['user_id'];
+$userFavoriteIds = getUserFavoriteIds($conn, $currentUserId);
 $daftarGenre = [];
 if(function_exists('getGenres')){
   $daftarGenre = getGenres($conn);
@@ -96,6 +98,10 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
         <div class="song-list">
           <?php if (!empty($daftarlagutampil)): ?>
             <?php foreach ($daftarlagutampil as $lagu): ?>
+              <?php $isFavorite = in_array($lagu['lagu_id'], $userFavoriteIds); ?>
+              <?php $activeClass = $isFavorite ? 'active' : ''; ?>
+              <?php $iconType = $isFavorite ? 'ph-fill' : 'ph';?>
+              <?php $iconName = $isFavorite ? 'ph-heart' : 'ph-heart';?>
               <?php $detailLagu = getLaguById($conn, $lagu['lagu_id']); ?>
               <?php $genreIdsJson = htmlspecialchars(json_encode($detailLagu['genre_ids'])); ?>
 
@@ -105,22 +111,25 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
                   <div class="song-artist"><?php echo htmlspecialchars($lagu['nama_artist']); ?></div>
                   <span class="song-year"><?php echo htmlspecialchars($lagu['tahun']); ?></span>
                 </div>
-                <div class="song-action">
-                  <button class="btn-fav" title="Tambah ke Favorit"><i class="ph ph-heart"></i></button>
-                </div>
 
-                <div class="dropdown">
-                  <button class="btn-icon dropdown-toggle"><i class="ph ph-dots-three-outline-vertical"></i></i></button>
-                  <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item btn-edit" 
+                <div class="song-action">
+                  <button class="btn-fav <?php echo $activeClass; ?>" data-id="<?php echo $lagu['lagu_id']; ?>" title="Favorit">
+                    <i class="ph <?php echo $iconType; ?> <?php echo $iconName; ?>"></i>
+                  </button>
+
+                  <div class="dropdown">
+                    <button class="btn-icon dropdown-toggle"><i class="ph ph-dots-three-outline-vertical"></i></i></button>
+                    <div class="dropdown-menu">
+                      <a href="#" class="dropdown-item btn-edit" 
                       data-id="<?php echo $lagu['lagu_id']; ?>"
                       data-judul="<?php echo htmlspecialchars($lagu['judul']); ?>"
                       data-artist="<?php echo htmlspecialchars($lagu['nama_artist']); ?>"
                       data-tahun="<?php echo $lagu['tahun']; ?>"
                       data-genres="<?php echo $genreIdsJson; ?>">
-                      <i class="fa-solid fa-pen"></i> Edit
-                    </a>
-                    <a href="#" class="dropdown-item btn-delete"><i class="fa-solid fa-trash"></i> Hapus</a>
+                        <i class="fa-solid fa-pen"></i> Edit
+                      </a>
+                      <a href="#" class="dropdown-item btn-delete"><i class="fa-solid fa-trash"></i> Hapus</a>
+                    </div>
                   </div>
                 </div>
 

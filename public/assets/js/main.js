@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === overlay) closeAllModals();
         });
     });
+    //logika dropdown
     document.addEventListener('click', function(e) {
         const toggle = e.target.closest('.dropdown-toggle');
         if (toggle) {
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+    //logika auto close alert
     const alerts = document.querySelectorAll('.alert');
     if (alerts.length > 0) {
         setTimeout(() => {
@@ -92,4 +94,51 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 4000);
     }
+    //logika favorit button
+    document.addEventListener('click', function(e) {
+        const favBtn = e.target.closest('.btn-fav');
+        if (favBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            let laguId = favBtn.dataset.id;
+            if (!laguId) {
+                const card = favBtn.closest('.song-card');
+                if (card) laguId = card.dataset.id;
+            }
+            if (!laguId) return;
+            fetch('../src/actions/toggle_favorit.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ lagu_id: laguId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const icon = favBtn.querySelector('i');
+                    if (data.status === 'added') {
+                        favBtn.classList.add('active');
+                        if(icon) {
+                             icon.classList.remove('ph'); 
+                             icon.classList.add('ph-fill'); 
+                        }
+                    } else {
+                        favBtn.classList.remove('active');
+                        if(icon) {
+                             icon.classList.remove('ph-fill');
+                             icon.classList.add('ph'); 
+                        }
+                        if (window.location.href.indexOf('favorit.php') > -1) {
+                            const card = favBtn.closest('.song-card');
+                            if (card) card.remove();
+                        }
+                    }
+                } else {
+                    console.error('Gagal mengubah favorit:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
 });

@@ -26,7 +26,7 @@
         </div>
         <ul id="menu-list" class="hidden">
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">Favorit</a></li>
+            <li><a href="favorit.php">Favorit</a></li>
             <li><a href="#">Top Song</a></li>
             <li><a href="#">Top Artist</a></li>
             <li><a href="#">Friends</a></li>
@@ -35,6 +35,7 @@
     </nav>
     <main>
         <!-- isi dari dashboard -->
+        <!-- template navbar untuk file2 dashboard -->
     </main>
     <script src="../assets/js/navbar.js"></script>
 </body>

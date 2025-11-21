@@ -343,6 +343,7 @@ p {
     border-bottom: 1px solid #eee;
     gap: 10px;
     margin-right: 40px;
+    margin-left: 20px;
 }
 
 .no-songs {

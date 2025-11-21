@@ -11,8 +11,12 @@ require_once __DIR__ . '/../src/functions/lagu_functions.php';
 require_once __DIR__ . '/../src/functions/artist_functions.php';
 
 $currentUserId = $_SESSION['user_id'];
-$daftarFavorit = getFavoritedSongs($conn, $currentUserId);
-
+$keyword = $_GET['keyword'] ?? '';
+if (!empty($keyword)) {
+    $daftarFavorit = searchUserFavorites($conn, $currentUserId, trim($keyword));
+} else {
+    $daftarFavorit = getFavoritedSongs($conn, $currentUserId);
+}
 $daftarGenre = [];
 if(function_exists('getGenres')){
   $daftarGenre = getGenres($conn);
@@ -36,6 +40,21 @@ if(function_exists('getGenres')){
         <div class="page-header">
           <h1>Lagu Favorit Saya</h1>
           <p>Koleksi lagu yang Anda sukai.</p>
+        </div>
+
+        <div class="filter-bar-container" style="margin-bottom: 20px;">
+          <form action="favorit.php" method="GET" class="filter-form">
+            <div class="search-row">
+              <div class="search-group">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <input type="text" name="keyword" placeholder="Cari di favorit..." value="<?php echo htmlspecialchars($keyword); ?>">
+                <?php if (!empty($keyword)): ?>
+                  <a href="favorit.php" class="btn-reset" title="Reset Pencarian"><i class="ph ph-arrow-counter-clockwise"></i></a>
+                <?php endif; ?>
+                <button type="submit" class="btn-search-submit"><i class="ph ph-arrow-right"></i></button>
+              </div>
+            </div>  
+          </form>
         </div>
 
         <div class="song-list">
@@ -75,9 +94,10 @@ if(function_exists('getGenres')){
             <?php endforeach; ?>
           <?php else: ?>
             <div class="no-data">
-              <i class="ph ph-heart-break" style="font-size: 4rem; margin-bottom: 15px;"></i>
               <p>Anda belum memiliki lagu favorit.</p>
-              <a href="index.php" class="btn-primary" style="text-decoration: none; margin-top: 10px; display: inline-block;">Jelajahi Lagu</a>
+              <div class="btn-no-fav">
+                <a href="index.php" class="btn-primary">Jelajahi Lagu</a>
+              </div>
             </div>
           <?php endif; ?>
         </div>

@@ -67,4 +67,28 @@ function toggleFavorite(mysqli $conn, int $userId, int $laguId): string {
         return 'added';
     }
 }
+function searchUserFavorites(mysqli $conn, int $userId, string $keyword): array {
+    //function untuk mencari lagu favorit user berdasarkan keyword
+    //digunakan di tab favorit.php
+    $favorites = [];
+    $keywordAman = "%" . $keyword . "%";
+    $sql = "SELECT l.lagu_id, l.judul, l.tahun, a.nama_artist 
+            FROM lagu l
+            JOIN artist a ON l.artist_id = a.artist_id
+            JOIN lagu_user lu ON l.lagu_id = lu.lagu_id
+            WHERE lu.user_id = ? 
+            AND (l.judul LIKE ? OR a.nama_artist LIKE ?)
+            ORDER BY lu.tanggal_ditambahkan DESC";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "iss", $userId, $keywordAman, $keywordAman);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if ($result && mysqli_num_rows($result) > 0) {
+            $favorites = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
+        mysqli_stmt_close($stmt);
+    }
+    return $favorites;
+}
 ?>

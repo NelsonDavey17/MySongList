@@ -46,7 +46,7 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
 <body>
     <main>
       <div class="container">
-        <h1>Katalog Lagu</h1>
+        <h1>List Lagu</h1>
         <p>Jelajahi semua lagu yang ada di MySongList.</p>
 
         <div class="filter-bar-container">
@@ -229,5 +229,6 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
 
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/main.js"></script>
+    <?php if($conn){ mysqli_close($conn); } ?>
 </body>
 </html>

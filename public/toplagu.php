@@ -2,6 +2,7 @@
 include 'templates/session_start.php';
 include 'templates/navbar.php';
 include 'templates/editSongModal.php';
+include 'templates/footer.php';
 
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/functions/lagu_functions.php';

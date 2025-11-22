@@ -1,11 +1,9 @@
 <?php
+include 'templates/session_start.php';
 //navigation bar
 include 'templates/navbar.php';
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: auth/login.php");
-    exit;
-}
+include 'templates/footer.php';
+
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/functions/lagu_functions.php';
 require_once __DIR__ . '/../src/functions/user_song_functions.php';

@@ -2,6 +2,8 @@
 include 'templates/session_start.php';
 include 'templates/navbar.php'; // Navbar
 include 'templates/editSongModal.php'; // Edit Song Modal
+include 'templates/footer.php';
+
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/functions/user_song_functions.php';
 require_once __DIR__ . '/../src/functions/lagu_functions.php'; 

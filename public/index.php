@@ -4,6 +4,7 @@ include 'templates/session_start.php';
 include 'templates/navbar.php';
 //template edit modal
 include 'templates/editSongModal.php';
+include 'templates/footer.php';
 
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__. '/../src/functions/lagu_functions.php';

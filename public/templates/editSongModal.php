@@ -33,7 +33,7 @@ if(function_exists('getGenres')){
             </div>
             <div class="form-group">
               <label for="edit_tahun">Tahun Rilis</label>
-              <input type="number" id="edit_tahun" name="tahun" min="1900" max="2025">
+              <input type="number" id="edit_tahun" name="tahun" min="1901" max="2025">
             </div>
             <div class="form-group">
               <label>Genre (Pilih Minimal 1) <span class="required">*</span></label>

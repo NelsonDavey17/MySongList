@@ -19,7 +19,7 @@ $error_msg = htmlspecialchars(urldecode($_GET['error'] ?? ''));
     
     <div class="auth-container">
         <h2>Login MySongList</h2>
-        <p>Silakan login untuk melanjutkan</p>
+        <p>Silakan Login untuk melanjutkan</p>
 
         <form id="loginForm" action="../../src/auth/proses_login.php" method="POST">
             

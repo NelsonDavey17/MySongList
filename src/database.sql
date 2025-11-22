@@ -55,16 +55,6 @@ CREATE TABLE IF NOT EXISTS `lagu_user` (
   CONSTRAINT `lu_fk_lagu` FOREIGN KEY (`lagu_id`) REFERENCES `lagu` (`lagu_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS `friendlist` (
-  `user_satu_id` INT NOT NULL,
-  `user_dua_id` INT NOT NULL,
-  `status` ENUM('pending', 'accepted', 'declined', 'blocked') NOT NULL DEFAULT 'pending',
-  PRIMARY KEY (`user_satu_id`, `user_dua_id`),
-  KEY `user_dua_id` (`user_dua_id`),
-  CONSTRAINT `fl_fk_user_satu` FOREIGN KEY (`user_satu_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-  CONSTRAINT `fl_fk_user_dua` FOREIGN KEY (`user_dua_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 INSERT INTO `genre` (`nama_genre`) VALUES
 ('Pop'),
 ('Rock'),

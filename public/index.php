@@ -164,7 +164,7 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
                 </div>
                 <div class="form-group">
                   <label for="tahun">Tahun Rilis</label>
-                  <input type="number" id="tahun" name="tahun" min="1900" max="2025" placeholder="Tahun (1900-2025)">
+                  <input type="number" id="tahun" name="tahun" min="1901" max="2025" placeholder="Tahun (1901-2025)">
                 </div>
                 <div class="form-group">
                   <label>Genre (Pilih Minimal 1) <span class="required">*</span></label>

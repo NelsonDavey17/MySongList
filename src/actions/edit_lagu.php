@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../../public/index.php?error=" . urlencode("Gagal memproses artis."));
         exit;
     }
-    if ($tahun === false || $tahun === null || $tahun < 1900 || $tahun > 2025) { $tahun = null; }
+    if ($tahun === false || $tahun === null || $tahun < 1901 || $tahun > 2025) { $tahun = null; }
     $sql_update = "UPDATE lagu SET judul = ?, artist_id = ?, tahun = ? WHERE lagu_id = ?";
     $stmt_update = mysqli_prepare($conn, $sql_update);
     mysqli_stmt_bind_param($stmt_update, "siii", $judul, $newArtistId, $tahun, $laguId);

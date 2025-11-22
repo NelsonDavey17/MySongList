@@ -50,7 +50,7 @@ $php_success_msg = htmlspecialchars(urldecode($_GET['success'] ?? ''));
             <div class="form-group">
                 <label for="gender">Gender (Opsional)</label>
                 <select id="gender" name="gender">
-                    <option value="">-- Pilih Gender --</option>
+                    <option value="">-Pilih Gender-</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>

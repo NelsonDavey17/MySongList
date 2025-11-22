@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../../public/index.php?error=" . urlencode("Gagal memproses nama artis."));
         exit;
     }
-    if ($tahun === false || $tahun === null || $tahun < 1900 || $tahun > 2025) {
+    if ($tahun === false || $tahun === null || $tahun < 1901 || $tahun > 2025) {
         $tahun = null;
     }
     $sql_lagu = "INSERT INTO lagu (judul, artist_id, tahun) VALUES (?, ?, ?)";

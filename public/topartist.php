@@ -1,8 +1,5 @@
 <?php
 include 'templates/session_start.php';
-//navigation bar
-include 'templates/navbar.php';
-include 'templates/footer.php';
 
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/functions/lagu_functions.php';
@@ -33,6 +30,10 @@ $daftarTopArtist = getTopArtists($conn);
     />
 </head>
 <body>
+    <?php 
+    include 'templates/navbar.php';
+	  include 'templates/footer.php';
+    ?>
     <main>
       <div class="container">
         <div class="page-header">

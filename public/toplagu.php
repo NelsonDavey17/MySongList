@@ -1,8 +1,5 @@
 <?php
 include 'templates/session_start.php';
-include 'templates/navbar.php';
-include 'templates/editSongModal.php';
-include 'templates/footer.php';
 
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__ . '/../src/functions/lagu_functions.php';
@@ -32,6 +29,11 @@ if(function_exists('getGenres')){
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 </head>
 <body>
+    <?php 
+    include 'templates/navbar.php';
+	  include 'templates/editSongModal.php';
+	  include 'templates/footer.php';
+    ?>
     <main>
       <div class="container">
         <div class="page-header">

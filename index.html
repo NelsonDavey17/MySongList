@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPOTIPU</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      width: 400px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+      letter-spacing: 0.5px;
+    }
+
+    .start-btn {
+      display: inline-block;
+      padding: 12px 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(110, 51, 214, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(110, 51, 214, 0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background: rgba(110, 51, 214, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(110, 51, 214, 0.6);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--glass-border);
+      color: var(--text-sub);
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 0.6rem 0;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+    z-index: 50;
+    }
+
+    .footer:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <img src="MySongList/public/assets/image/spotipulogo.png" alt="Logo" class="logo">
+    <h1>Pick and save your favorite music.</h1>
+    <a href="public/index.php" class="start-btn">Mulai</a>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 MySongList — Buat Kamu Yang Suka Dengan Lagu.</p>
+  </footer>
+</body>
+</html>

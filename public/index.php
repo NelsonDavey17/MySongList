@@ -1,10 +1,5 @@
 <?php
 include 'templates/session_start.php';
-//navigation bar
-include 'templates/navbar.php';
-//template edit modal
-include 'templates/editSongModal.php';
-include 'templates/footer.php';
 
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__. '/../src/functions/lagu_functions.php';
@@ -44,6 +39,13 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
     />
 </head>
 <body>
+    <?php
+    //navigation bar
+    include 'templates/navbar.php';
+    //template edit modal
+    include 'templates/editSongModal.php';
+    include 'templates/footer.php';
+    ?>
     <main>
       <div class="container">
         <h1>List Lagu</h1>

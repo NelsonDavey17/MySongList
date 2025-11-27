@@ -166,3 +166,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+let neweye = document.getElementById("neweye");
+let new_password = document.getElementById("new_password");
+neweye.onclick = function(){
+    if(new_password.type == "password"){
+        new_password.type = "text";
+        neweye.classList.remove("ph-eye-slash");
+        neweye.classList.add("ph-eye");
+    }else {
+        new_password.type = "password";
+        neweye.classList.remove("ph-eye");
+        neweye.classList.add("ph-eye-slash");
+    }
+}
+
+let coneye = document.getElementById("coneye");
+let confirm_password = document.getElementById("confirm_password");
+coneye.onclick = function(){
+    if(confirm_password.type == "password"){
+        confirm_password.type = "text";
+        coneye.classList.remove("ph-eye-slash");
+        coneye.classList.add("ph-eye");
+    }else {
+        confirm_password.type = "password";
+        coneye.classList.remove("ph-eye");
+        coneye.classList.add("ph-eye-slash");
+    }
+}

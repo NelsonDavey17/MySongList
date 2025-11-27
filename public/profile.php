@@ -20,8 +20,8 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Saya - MySongList</title>
-    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
@@ -136,15 +136,23 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
                 <form action="../src/actions/update_password.php" method="POST">
                     <div class="form-group">
                         <label for="old_password">Password Lama</label>
-                        <input type="password" id="old_password" name="old_password" required>
+                        <div class="flexbox">
+                            <input type="password" id="old_password" name="old_password" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="new_password">Password Baru (Min. 8 Karakter)</label>
-                        <input type="password" id="new_password" name="new_password" required minlength="8">
+                        <label for="new_password">Password Baru</label>
+                        <div class="flexbox">
+                            <input type="password" id="new_password" name="new_password" required minlength="8" placeholder="Minimal 8 Karakter...">
+                            <i class="ph ph-eye-slash" id="neweye"></i>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="confirm_password">Konfirmasi Password Baru</label>
-                        <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
+                        <label for="confirm_password">Password Baru</label>
+                        <div class="flexbox">
+                            <input type="password" id="confirm_password" name="confirm_password" required minlength="8" placeholder="Minimal 8 Karakter...">
+                            <i class="ph ph-eye-slash" id="coneye"></i>
+                        </div>
                     </div>
                     <button type="submit" class="btn-primary block">Simpan Password</button>
                 </form>

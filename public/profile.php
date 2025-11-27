@@ -69,7 +69,7 @@ $recentFavorites = getRecentFavorites($conn, $currentUserId, 3);
                     <div class="info-row">
                         <span class="info-label">Password:</span>
                         <span class="info-value">********</span>
-                        <button id="openChangePassBtn" class="btn-change-pass" style="margin-left: 15px;">Ubah Password</button>
+                        <button id="openChangePassBtn" class="btn-change-pass">Ubah Password</button>
                     </div>
 
                     <div class="profile-stats">

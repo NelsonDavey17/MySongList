@@ -93,7 +93,6 @@ if(function_exists('getGenres')){
             <?php endforeach; ?>
           <?php else: ?>
             <div class="no-data">
-                <i class="ph ph-chart-bar" style="font-size: 4rem; margin-bottom: 15px; color:#ccc;"></i>
                 <p>Belum ada data lagu populer saat ini.</p>
             </div>
           <?php endif; ?>

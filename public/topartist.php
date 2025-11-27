@@ -72,7 +72,6 @@ $daftarTopArtist = getTopArtists($conn);
             <?php endforeach; ?>
           <?php else: ?>
             <div class="no-data">
-                <i class="ph ph-user-sound"></i>
                 <p>Belum ada data artis populer saat ini.</p>
             </div>
           <?php endif; ?>

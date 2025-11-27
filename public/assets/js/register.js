@@ -54,3 +54,31 @@ function closePopup() {
         });
     }
 }
+
+let eyeicon = document.getElementById("eyeicon");
+let password = document.getElementById("password");
+eyeicon.onclick = function(){
+    if(password.type == "password"){
+        password.type = "text";
+        eyeicon.classList.remove("ph-eye-slash");
+        eyeicon.classList.add("ph-eye");
+    }else {
+        password.type = "password";
+        eyeicon.classList.remove("ph-eye");
+        eyeicon.classList.add("ph-eye-slash");
+    }
+}
+
+let confirm_eyeicon = document.getElementById("confirm_eyeicon");
+let confirm_password = document.getElementById("confirm_password");
+confirm_eyeicon.onclick = function(){
+    if(confirm_password.type == "password"){
+        confirm_password.type = "text";
+        confirm_eyeicon.classList.remove("ph-eye-slash");
+        confirm_eyeicon.classList.add("ph-eye");
+    }else {
+        confirm_password.type = "password";
+        confirm_eyeicon.classList.remove("ph-eye");
+        confirm_eyeicon.classList.add("ph-eye-slash");
+    }
+}

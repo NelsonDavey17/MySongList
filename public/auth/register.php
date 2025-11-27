@@ -19,6 +19,16 @@ $php_success_msg = htmlspecialchars(urldecode($_GET['success'] ?? ''));
     <title>Registrasi Akun - MySongList</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/auth.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
 </head>
 <body>
     <div class="auth-container">
@@ -41,11 +51,17 @@ $php_success_msg = htmlspecialchars(urldecode($_GET['success'] ?? ''));
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required minlength="8" placeholder="Minimal 8 karakter">
+                <div class="flexbox">
+                    <input type="password" id="password" name="password" required minlength="8" placeholder="Minimal 8 Karakter...">
+                    <i class="ph ph-eye-slash" id="eyeicon"></i>
+                </div>                
             </div>
             <div class="form-group">
                 <label for="confirm_password">Konfirmasi</label>
-                <input type="password" id="confirm_password" name="confirm_password" required minlength="8" placeholder="Minimal 8 karakter">
+                <div class="flexbox">
+                    <input type="password" id="confirm_password" name="confirm_password" required minlength="8" placeholder="Konfirmasi Password...">
+                    <i class="ph ph-eye-slash" id="confirm_eyeicon"></i>
+                </div>                
             </div>
             <div class="form-group">
                 <label for="gender">Gender (Opsional)</label>

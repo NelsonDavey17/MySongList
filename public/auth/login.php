@@ -14,6 +14,16 @@ $error_msg = htmlspecialchars(urldecode($_GET['error'] ?? ''));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MySongList</title>
     <link rel="stylesheet" href="../assets/css/auth.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
 </head>
 <body>
     
@@ -38,9 +48,12 @@ $error_msg = htmlspecialchars(urldecode($_GET['error'] ?? ''));
             
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <div class="flexbox">
+                    <input type="password" id="password" name="password" required placeholder="Masukkan Password...">
+                    <i class="ph ph-eye-slash" id="eyeicon"></i>
+                </div>                
             </div>
-            
+
             <div class="form-group">
                 <button type="submit" class="auth-button">Login</button>
             </div>
@@ -48,6 +61,6 @@ $error_msg = htmlspecialchars(urldecode($_GET['error'] ?? ''));
 
         <p class="auth-switch">Belum punya akun? <a href="register.php">Daftar di sini</a></p>
     </div>
-
-    </body>
+    <script src="../assets/js/register.js"></script>
+</body>
 </html>

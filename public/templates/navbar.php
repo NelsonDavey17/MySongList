@@ -22,7 +22,9 @@
 <body>
     <nav class="navbar">
         <div class="logoweb">
-            <img src="assets/image/spotipulogo.png" alt="loogweb">
+            <a href="index.php">
+                <img src="assets/image/spotipulogo.png" alt="loogweb">
+            </a>
         </div>
         <div id="menu-icon" class="menu-icon">
             <i class="ph ph-list"></i>

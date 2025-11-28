@@ -4,19 +4,32 @@ include 'templates/session_start.php';
 require_once __DIR__ . '/../src/config.php';
 require_once __DIR__. '/../src/functions/lagu_functions.php';
 require_once __DIR__. '/../src/functions/user_song_functions.php';
+
+$currentUserId = $_SESSION['user_id'];
+$userFavoriteIds = getUserFavoriteIds($conn, $currentUserId);
 //buat nampilin lagu dengan filter dan sorting
 $keyword = $_GET['keyword'] ?? '';
 $filterGenre = $_GET['genre'] ?? '';
 $sortBy = $_GET['sort'] ?? 'judul_asc';
 
-$currentUserId = $_SESSION['user_id'];
-$userFavoriteIds = getUserFavoriteIds($conn, $currentUserId);
+$limit = 12; // Jumlah lagu per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = ($page < 1) ? 1 : $page; // Pastikan halaman minimal 1
+$offset = ($page - 1) * $limit;
+
 $daftarGenre = [];
 if(function_exists('getGenres')){
   $daftarGenre = getGenres($conn);
 }
+//hitung total data lagu yang ada (mungkin ditampilkan)
+$totalData = 0;
+if (function_exists('countLaguAdvanced')) {
+    $totalData = countLaguAdvanced($conn, $keyword, $filterGenre);
+}
+$totalPages = ceil($totalData / $limit);
+
 //song card ditampilkan dengan fungsi getLaguAdvanced
-$daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//getAllLagu($conn);
+$daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy, $limit, $offset);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +154,42 @@ $daftarlagutampil = getLaguAdvanced($conn, $keyword, $filterGenre, $sortBy);//ge
             <p class="no-songs">Belum ada lagu di database.</p>
           <?php endif; ?>
         </div>
+
+        <?php if ($totalPages > 1): ?>
+          <div class="pagination-container">
+            <?php
+              function buildUrl($newPage, $k, $g, $s) {
+                return "index.php?page=$newPage&keyword=" . urlencode($k) . "&genre=" . urlencode($g) . "&sort=" . urlencode($s);
+              }
+            ?>
+
+            <?php if ($page > 1): ?>
+              <a href="<?php echo buildUrl($page - 1, $keyword, $filterGenre, $sortBy); ?>" class="page-link prev">
+                <i class="ph ph-caret-left"></i> Prev
+              </a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+              <?php if ($i == 1 || $i == $totalPages || ($i >= $page - 2 && $i <= $page + 2)): ?>
+                <a href="<?php echo buildUrl($i, $keyword, $filterGenre, $sortBy); ?>" class="page-link <?php echo ($i == $page) ? 'active' : ''; ?>">
+                  <?php echo $i; ?>
+                </a>
+
+              <?php elseif ($i == $page - 3 || $i == $page + 3): ?>
+                <span class="page-dots">...</span>
+
+              <?php endif; ?>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+              <a href="<?php echo buildUrl($page + 1, $keyword, $filterGenre, $sortBy); ?>" class="page-link next">
+                Next <i class="ph ph-caret-right"></i>
+              </a>
+
+            <?php endif; ?>
+          </div>
+        <?php endif; ?>
+        
       </div>
     </main>
 

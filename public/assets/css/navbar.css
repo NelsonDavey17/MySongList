@@ -9,10 +9,10 @@
     justify-content: space-between;
     padding : 2rem 2rem;
 }
-.navbar div img {
+.navbar div a img {
     width: 150px;
 }
-.navbar div img:hover {
+.navbar div a img:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: all;

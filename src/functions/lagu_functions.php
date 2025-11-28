@@ -53,7 +53,7 @@ function getLaguById(mysqli $conn, int $laguId): ?array {
     }
     return $lagu;
 }
-function getLaguAdvanced(mysqli $conn, string $keyword, string $genreId, string $sort): array {
+function getLaguAdvanced(mysqli $conn, string $keyword, string $genreId, string $sort, int $limit = 12, int $offset = 0): array {
     //ini yang sekarang dipake buat nampilin lagu di halaman utama dengan filter dan sorting
     $daftarLagu = [];
     $sql = "SELECT DISTINCT l.lagu_id, l.judul, l.tahun, a.nama_artist 
@@ -87,10 +87,13 @@ function getLaguAdvanced(mysqli $conn, string $keyword, string $genreId, string 
         default: $orderBy = "l.judul ASC"; break;
     }
     $sql .= " ORDER BY " . $orderBy;
+    //mengatur limit dan offset
+    $sql .= " LIMIT ? OFFSET ? ";
+    $params[] = $limit;
+    $params[] = $offset;
+    $types .= "ii";
     $stmt = mysqli_prepare($conn, $sql);
-    if (!empty($params)) {
-        mysqli_stmt_bind_param($stmt, $types, ...$params);
-    }
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     if ($result && mysqli_num_rows($result) > 0) {
@@ -99,5 +102,45 @@ function getLaguAdvanced(mysqli $conn, string $keyword, string $genreId, string 
     }
     mysqli_stmt_close($stmt);
     return $daftarLagu;
+}
+function countLaguAdvanced(mysqli $conn, string $keyword, string $genreId): int {
+    //function pendamping getLaguAdvance, buat ngitung jumlah lagu kalau-kalau ade sortir, pencarian, dan filter genre
+    $total = 0;
+    $sql = "SELECT COUNT(DISTINCT l.lagu_id) as total 
+            FROM lagu l
+            JOIN artist a ON l.artist_id = a.artist_id";
+
+    if (!empty($genreId)) {
+        $sql .= " JOIN lagu_genre lg ON l.lagu_id = lg.lagu_id";
+    }
+    $conditions = [];
+    $params = [];
+    $types = "";
+    if (!empty($keyword)) {
+        $conditions[] = "(l.judul LIKE ? OR a.nama_artist LIKE ?)";
+        $searchTerm = "%" . $keyword . "%";
+        $params[] = $searchTerm;
+        $params[] = $searchTerm;
+        $types .= "ss";
+    }
+    if (!empty($genreId)) {
+        $conditions[] = "lg.genre_id = ?";
+        $params[] = (int)$genreId;
+        $types .= "i";
+    }
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
+    }
+    $stmt = mysqli_prepare($conn, $sql);
+    if (!empty($params)) {
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($result)) {
+        $total = (int)$row['total'];
+    }
+    mysqli_stmt_close($stmt);
+    return $total;
 }
 ?>
